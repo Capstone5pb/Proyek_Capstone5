@@ -17,17 +17,20 @@
         <TextView
             android:id="@+id/judulberita"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:text="Judul Berita"/>
 
         <TextView
             android:id="@+id/tanggalberita"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:text="Tanggal Berita"/>
 
         <TextView
             android:id="@+id/kategoriberita"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:text="Kategori Berita"/>
 
     </LinearLayout>
 
