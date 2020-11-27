@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Proyek Capstone</string>
+    <string name="app_name">Berita Capstone 5</string>
+    <string name="title_header_main">Berita\nCapstone 5</string>
 </resources>
