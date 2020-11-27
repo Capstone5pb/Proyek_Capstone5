@@ -12,25 +12,30 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.berita.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder> {
 
-    public List<com.example.berita.ModelNews> androidList;
+    public List<ModelNews> androidList;
     private Context mContext;
-    private com.example.berita.NewsAdapter.onSelectData onSelectData;
+    private NewsAdapter.onSelectData onSelectData;
 
     public interface onSelectData {
-        void onSelected(com.example.berita.ModelNews mdlNews);
+        void onSelected(ModelNews mdlNews);
     }
 
-    public NewsAdapter(Context context, List<com.example.berita.ModelNews> android, com.example.berita.NewsAdapter.onSelectData onSelectData) {
+    public NewsAdapter(Context context, List<ModelNews> android, NewsAdapter.onSelectData onSelectData) {
         this.mContext = context;
         this.androidList = android;
         this.onSelectData = onSelectData;
+    }
+
+    public void setData(ArrayList<ModelNews> data){
+        this.androidList = data;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -43,7 +48,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsViewHolder> {
     @Override
     public void onBindViewHolder(NewsViewHolder viewHolder, int i) {
 
-        final com.example.berita.ModelNews berita = androidList.get(i);
+        final ModelNews berita = androidList.get(i);
 
         Glide.with(mContext)
                 .load(berita.getUrlToImage())

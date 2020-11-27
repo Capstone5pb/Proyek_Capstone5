@@ -1,32 +1,58 @@
 package com.example.proyekcapstone;
 
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
+@Entity(tableName = "api_table")
 public class ModelNews {
 
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    private Integer id;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @SerializedName("publishedAt")
+    @ColumnInfo(name = "publishedAt")
     private String publishedAt;
 
     @SerializedName("author")
+    @ColumnInfo(name = "author")
     private String author;
 
     @SerializedName("urlToImage")
+    @ColumnInfo(name = "urlToImage")
     private String urlToImage;
 
     @SerializedName("description")
+    @ColumnInfo(name = "description")
     private String description;
 
-    @SerializedName("source")
-    private Source source;
+//    @SerializedName("source")
+//    @ColumnInfo(name = "source")
+//    private Source source;
 
     @SerializedName("title")
+    @ColumnInfo(name = "title")
     private String title;
 
     @SerializedName("url")
+    @ColumnInfo(name = "url")
     private String url;
 
     @SerializedName("content")
+    @ColumnInfo(name = "content")
     private String content;
 
     public void setPublishedAt(String publishedAt){
@@ -61,13 +87,13 @@ public class ModelNews {
         return description;
     }
 
-    public void setSource(Source source){
-        this.source = source;
-    }
+//    public void setSource(Source source){
+//        this.source = source;
+//    }
 
-    public Source getSource(){
-        return source;
-    }
+//    public Source getSource(){
+//        return source;
+//    }
 
     public void setTitle(String title){
         this.title = title;
