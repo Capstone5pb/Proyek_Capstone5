@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.berita.R;
+import com.example.proyekcapstone.R;
 import com.google.android.material.card.MaterialCardView;
 
 

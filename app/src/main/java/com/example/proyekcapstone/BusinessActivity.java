@@ -3,12 +3,17 @@ package com.example.proyekcapstone;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +21,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.example.berita.R;
+import com.example.proyekcapstone.room.NewsViewModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,6 +37,8 @@ public class BusinessActivity extends AppCompatActivity implements NewsAdapter.o
     List modelNews = new ArrayList<>();
     ProgressDialog progressDialog;
 
+    private NewsViewModel mNewsViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,11 +50,27 @@ public class BusinessActivity extends AppCompatActivity implements NewsAdapter.o
         progressDialog.setMessage("Menampilkan Berita");
 
         rvBusiness = findViewById(R.id.rvNews);
+        mNewsViewModel = ViewModelProviders.of(this).get(NewsViewModel.class);
         rvBusiness.setHasFixedSize(true);
         rvBusiness.setLayoutManager(new LinearLayoutManager(this));
 
+        if (haveNetwork()) {
+            mNewsViewModel.deleteAll();
+            loadJSON();
+        } else if (!haveNetwork()) {
+            newsAdapter = new NewsAdapter(BusinessActivity.this, modelNews, this);
+            rvBusiness.setAdapter(newsAdapter);
+            mNewsViewModel.getAllData().observe(this, new Observer<List<ModelNews>>() {
+                @Override
+                public void onChanged(@Nullable final List<ModelNews> data) {
+                    // Update the cached copy of the words in the adapter.
+                    newsAdapter.setData((ArrayList<ModelNews>) data);
+                }
+            });
+        }
+
         setupToolbar();
-        loadJSON();
+
     }
 
     private void setupToolbar() {
@@ -88,6 +111,7 @@ public class BusinessActivity extends AppCompatActivity implements NewsAdapter.o
                                 dataApi.setUrlToImage(temp.getString("urlToImage"));
 
                                 modelNews.add(dataApi);
+                                mNewsViewModel.insert(dataApi);
                                 showNews();
                             }
                         } catch (JSONException e) {
@@ -120,6 +144,21 @@ public class BusinessActivity extends AppCompatActivity implements NewsAdapter.o
         detailIntent.putExtra("image", mdlNews.getUrlToImage());
 
         BusinessActivity.this.startActivity(detailIntent);
+    }
+
+    private boolean haveNetwork() {
+        boolean have_WIFI = false;
+        boolean have_MobileData = false;
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo[] networkInfos = connectivityManager.getAllNetworkInfo();
+        for (NetworkInfo info : networkInfos) {
+            if (info.getTypeName().equalsIgnoreCase("WIFI"))
+                if (info.isConnected()) have_WIFI = true;
+
+            if (info.getTypeName().equalsIgnoreCase("MOBILE"))
+                if (info.isConnected()) have_MobileData = true;
+        }
+        return have_WIFI || have_MobileData;
     }
 
 }

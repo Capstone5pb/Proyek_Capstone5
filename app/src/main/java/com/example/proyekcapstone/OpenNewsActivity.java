@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
-import com.example.berita.R;
+import com.example.proyekcapstone.R;
 
 
 public class OpenNewsActivity extends AppCompatActivity {
