@@ -6,7 +6,7 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.berita.R;
+import com.example.proyekcapstone.R;
 
 public class splash_screen extends AppCompatActivity {
 

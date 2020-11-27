@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.berita.R;
+import com.example.proyekcapstone.R;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.Calendar;

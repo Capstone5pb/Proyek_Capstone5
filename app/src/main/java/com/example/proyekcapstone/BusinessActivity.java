@@ -16,7 +16,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
-import com.example.berita.R;
+import com.example.proyekcapstone.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
