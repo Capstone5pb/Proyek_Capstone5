@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Berita Capstone 5</string>
     <string name="title_header_main">Berita\nCapstone 5</string>
-    <string name="action_settings">Setting</string>
+    <string name="action_settings">Alarm</string>
     <string name="alarm_off">Alarm off</string>
     <string name="alarm_on">Alarm on</string>
     <string name="alarm_on_toast">Alarm Telah Diaktifkan!</string>
