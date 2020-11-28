@@ -1,6 +1,9 @@
 package com.example.proyekcapstone;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -66,4 +69,28 @@ public class OpenNewsActivity extends AppCompatActivity {
 //            }
 //        });
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_open_news, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void Setting(MenuItem item) {
+        Intent intent = new Intent(OpenNewsActivity.this, Setting.class);
+        startActivity(intent);
+    }
+
 }

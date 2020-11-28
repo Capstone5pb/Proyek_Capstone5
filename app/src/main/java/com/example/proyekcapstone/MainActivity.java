@@ -3,6 +3,8 @@ package com.example.proyekcapstone;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -94,8 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intent = new Intent(MainActivity.this, BusinessActivity.class);
             startActivity(intent);
 
-
         }
-
     }
+
 }
